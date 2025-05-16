@@ -442,5 +442,16 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  function toggleTheme() {
+    const icon = document.getElementById("themeIcon");
+    document.body.classList.toggle("light-mode");
+    if (document.body.classList.contains("light-mode")) {
+      icon.textContent = "☀️";
+    } else {
+      icon.textContent = "🌙";
+    }
+  }
+</script>
 </body>
 </html>
