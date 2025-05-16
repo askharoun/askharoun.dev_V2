@@ -19,8 +19,9 @@
 </head>
 <body class="light-mode">
   <!-- Theme Toggle -->
-  <div class="theme-toggle" style="position: fixed; bottom: 20px; left: 20px; z-index: 999;">
-  <button class="toggle-button" style="
+  <!-- Theme Toggle -->
+<div class="theme-toggle" style="position: fixed; bottom: 20px; left: 20px; z-index: 999;">
+  <button id="theme-toggle-button" class="toggle-button" style="
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,6 +38,51 @@
     <span class="mode-text">DARK</span>
   </button>
 </div>
+
+<style>
+  :root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+  }
+
+  .dark {
+    --background-color: #121212;
+    --text-color: #ffffff;
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+</style>
+
+<script>
+  // Initialize theme toggle functionality
+  (function() {
+    const toggleButton = document.getElementById('theme-toggle-button');
+    const modeText = document.querySelector('.mode-text');
+    
+    // Check for saved theme preference or use preferred color scheme
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Set initial theme
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.classList.add('dark');
+      modeText.textContent = 'LIGHT';
+    } else {
+      modeText.textContent = 'DARK';
+    }
+    
+    // Toggle theme on button click
+    toggleButton.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      modeText.textContent = isDark ? 'LIGHT' : 'DARK';
+    });
+  })();
+</script>
 
   <!-- Header -->
   <header>
