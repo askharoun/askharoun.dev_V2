@@ -33,7 +33,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   " onmouseover="this.style.backgroundColor='#555'" onmouseout="this.style.backgroundColor='#333'">
-    <span class="mode-text">DARK</span>
+    <span class="mode-text">☾</span>
   </button>
 </div>
 
@@ -107,10 +107,10 @@
     // Apply initial theme
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       document.documentElement.classList.add('dark');
-      modeText.textContent = 'LIGHT';
+      modeText.textContent = '☀︎';
     } else {
       document.documentElement.classList.remove('dark');
-      modeText.textContent = 'DARK';
+      modeText.textContent = '☾';
     }
     
     // Toggle theme on button click
@@ -122,7 +122,7 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       
       // Update button text to show what mode will be switched to next
-      modeText.textContent = isDark ? 'LIGHT' : 'DARK';
+      modeText.textContent = isDark ? '☀︎' : '☾';
       
       // Update button hover color based on theme
       if (isDark) {
