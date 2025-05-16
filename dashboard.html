@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Center | Askharoun.dev</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body light-mode">
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <button class="toggle-button">
+      <span class="toggle-icon toggle-icon-moon">🌙</span>
+      <span class="toggle-icon toggle-icon-sun">☀️</span>
+      <span>THEME</span>
+    </button>
+  </div>
+
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <div>
+        <div class="logo-text">COMMAND CENTER</div>
+      </div>
+      <div class="dashboard-user">
+        <div>
+        </div>
+        <div class="user-info">
+          <div class="user-name">ASKHAROUN</div>
+          <div class="user-status">ONLINE</div>
+        </div>
+      </div>
+      <a href="index.html" class="logout-button">
+        <span class="button-text">LOGOUT</span>
+        <span class="button-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+        </span>
+      </a>
+    </header>
+    
+    <main class="dashboard-main">
+      <section class="dashboard-section tools-section">
+        <div class="section-header">
+          <h2 class="section-title">Personal Tools</h2>
+          <div class="section-line"></div>
+        </div>
+        
+        <div class="tools-grid">
+          <div class="tool-card calendar-card">
+            <div class="tool-header">
+              <h3 class="tool-title">Calendar</h3>
+              <div class="tool-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="tool-content">
+              <div class="calendar-container">
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&mode=WEEK&src=YXNraGFyb3VuMjAwNUBnbWFpbC5jb20&src=ZjIyNzg4NTVhOTFkYmIzMzllNTRkNWQyZjc5Mjg2ODkzNGZmMTFhNzlhZjM0NTQxOGUzN2IwMDc1MTA5ZDVjMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23616161&color=%237986CB"></iframe>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tool-card links-card">
+            <div class="tool-header">
+              <h3 class="tool-title">Quick Links</h3>
+              <div class="tool-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="tool-content">
+              <div class="quick-links">
+                <a href="https://canvas.psu.edu" target="_blank" class="quick-link">
+                  <div class="link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                  </div>
+                  <div class="link-text">Canvas</div>
+                </a>
+                
+                <a href="https://zoom.us/my/meeting" target="_blank" class="quick-link">
+                  <div class="link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M23 7l-7 5 7 5V7z"></path>
+                      <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg>
+                  </div>
+                  <div class="link-text">Zoom Links</div>
+                </a>
+                
+                <a href="https://docs.google.com/spreadsheets" target="_blank" class="quick-link">
+                  <div class="link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                  </div>
+                  <div class="link-text">Assignment Tracker</div>
+                </a>
+                
+                <a href="https://github.com" target="_blank" class="quick-link">
+                  <div class="link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </div>
+                  <div class="link-text">GitHub</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="dashboard-section games-section">
+        <div class="section-header">
+          <h2 class="section-title">Secret Games</h2>
+          <div class="section-line"></div>
+        </div>
+        
+        <div class="games-grid">
+          <div class="game-card">
+            <div class="game-header">
+              <h3 class="game-title">Snake</h3>
+              <div class="game-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="game-content">
+              <div class="game-description">Classic Snake game. Use arrow keys to control the snake and eat the food.</div>
+              <a href="#" class="game-button" id="snake-game-link">
+                <span class="button-text">PLAY GAME</span>
+                <span class="button-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-header">
+              <h3 class="game-title">Tetris</h3>
+              <div class="game-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+              </div>
+            </div>
+            <div class="game-content">
+              <div class="game-description">The classic block-stacking game. Arrange falling blocks to create complete lines.</div>
+              <a href="#" class="game-button" id="tetris-game-link">
+                <span class="button-text">PLAY GAME</span>
+                <span class="button-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-header">
+              <h3 class="game-title">Minesweeper</h3>
+              <div class="game-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="game-content">
+              <div class="game-description">Clear the minefield without detonating any mines. Use logic to identify safe squares.</div>
+              <a href="#" class="game-button" id="minesweeper-game-link">
+                <span class="button-text">PLAY GAME</span>
+                <span class="button-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <div class="dashboard-decoration">
+      <div class="decoration-circle c1"></div>
+      <div class="decoration-circle c2"></div>
+      <div class="decoration-circle c3"></div>
+      <div class="decoration-line l1"></div>
+      <div class="decoration-line l2"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

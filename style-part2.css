@@ -1,0 +1,278 @@
+/* Animation Keyframes */
+@keyframes float-element {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--primary), 0 0 30px var(--primary);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Snake Game Styles */
+.snake-game-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.snake-game-canvas {
+  border: 2px solid var(--border);
+  background-color: var(--background);
+  margin-bottom: var(--space-sm);
+}
+
+.snake-game-score {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.snake-game-controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.snake-control-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.snake-control-button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Tetris Game Styles */
+.tetris-game-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tetris-game-canvas {
+  border: 2px solid var(--border);
+  background-color: var(--background);
+  margin-bottom: var(--space-sm);
+}
+
+.tetris-game-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-sm);
+}
+
+.tetris-game-score,
+.tetris-game-level,
+.tetris-game-lines {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.tetris-game-controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.tetris-control-button {
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tetris-control-button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Minesweeper Game Styles */
+.minesweeper-game-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.minesweeper-game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  margin-bottom: var(--space-sm);
+}
+
+.minesweeper-cell {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.minesweeper-cell:hover {
+  background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+.minesweeper-cell.revealed {
+  background-color: var(--surface);
+}
+
+.minesweeper-cell.flagged {
+  background-color: rgba(var(--warning-rgb), 0.2);
+}
+
+.minesweeper-cell.mine {
+  background-color: rgba(var(--error-rgb), 0.8);
+  color: white;
+}
+
+.minesweeper-game-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-sm);
+}
+
+.minesweeper-game-mines,
+.minesweeper-game-flags {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.minesweeper-game-controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.minesweeper-control-button {
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.minesweeper-control-button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fade-in 1s ease forwards;
+}
+
+.float {
+  animation: float-element 3s ease-in-out infinite;
+}
+
+.rotate {
+  animation: rotate 10s linear infinite;
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Utility Classes */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
