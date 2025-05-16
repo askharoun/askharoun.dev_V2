@@ -19,9 +19,22 @@
 </head>
 <body class="light-mode">
   <!-- Theme Toggle -->
-  <div class="theme-toggle">
-    <button class="toggle-button">
-      <span>THEME</span>
+  <div style="position: fixed; bottom: 20px; left: 20px; z-index: 999;">
+    <button aria-label="Toggle Theme" onclick="toggleTheme()" style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    " onmouseover="this.style.backgroundColor='#555'" onmouseout="this.style.backgroundColor='#333'">
+      <span id="themeIcon">🌙</span>
     </button>
   </div>
 
@@ -357,15 +370,29 @@
     </section>
     
     <!-- Portal Link -->
-    <div class="portal-link">
-      <a href="portal.html" class="portal-button" aria-label="Access Portal">
-        <span class="portal-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
-        </span>
-        <span class="portal-text">PORTAL</span>
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
+      <a href="portal.html" aria-label="Access Portal" style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background-color: #007BFF; /* Replace with var(--primary) if using CSS variables */
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+      " onmouseover="this.style.backgroundColor='#e91e63'" onmouseout="this.style.backgroundColor='#007BFF'">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             viewBox="0 0 24 24" 
+             fill="none" 
+             stroke="white" 
+             stroke-width="2" 
+             stroke-linecap="round" 
+             stroke-linejoin="round" 
+             style="width: 20px; height: 20px;">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
       </a>
     </div>
   </main>
