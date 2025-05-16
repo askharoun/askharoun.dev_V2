@@ -19,24 +19,24 @@
 </head>
 <body class="light-mode">
   <!-- Theme Toggle -->
-  <div style="position: fixed; bottom: 20px; left: 20px; z-index: 999;">
-    <button aria-label="Toggle Theme" onclick="toggleTheme()" style="
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    " onmouseover="this.style.backgroundColor='#555'" onmouseout="this.style.backgroundColor='#333'">
-      <span id="themeIcon">🌙</span>
-    </button>
-  </div>
+  <div class="theme-toggle" style="position: fixed; bottom: 20px; left: 20px; z-index: 999;">
+  <button class="toggle-button" style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  " onmouseover="this.style.backgroundColor='#555'" onmouseout="this.style.backgroundColor='#333'">
+    <span class="mode-text">DARK</span>
+  </button>
+</div>
 
   <!-- Header -->
   <header>
