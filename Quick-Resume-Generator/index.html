@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Resume Builder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="title">Quick Resume Builder</h1>
+                <p class="subtitle">Create professional resumes with customizable sections and themes</p>
+                <p class="description">Choose from industry themes • Remove unwanted sections • Export to PDF, LaTeX & HTML</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <div class="layout">
+                    <!-- Form Section -->
+                    <div class="form-section">
+                        <!-- Theme Selector -->
+                        <div class="theme-selector">
+                            <h3><i class="fas fa-palette"></i> Choose Theme & Layout</h3>
+                            <div class="theme-grid">
+                                <button class="theme-option active" data-theme="modern" data-layout="modern">
+                                    <div class="theme-preview modern-preview">
+                                        <div class="preview-layout modern-layout"></div>
+                                    </div>
+                                    <span>Modern Professional</span>
+                                </button>
+                                <button class="theme-option" data-theme="classic" data-layout="classic">
+                                    <div class="theme-preview classic-preview">
+                                        <div class="preview-layout classic-layout"></div>
+                                    </div>
+                                    <span>Classic Business</span>
+                                </button>
+                                <button class="theme-option" data-theme="creative" data-layout="creative">
+                                    <div class="theme-preview creative-preview">
+                                        <div class="preview-layout creative-layout"></div>
+                                    </div>
+                                    <span>Creative Design</span>
+                                </button>
+                                <button class="theme-option" data-theme="minimal" data-layout="minimal">
+                                    <div class="theme-preview minimal-preview">
+                                        <div class="preview-layout minimal-layout"></div>
+                                    </div>
+                                    <span>Minimal Clean</span>
+                                </button>
+                                <button class="theme-option" data-theme="tech" data-layout="tech">
+                                    <div class="theme-preview tech-preview">
+                                        <div class="preview-layout tech-layout"></div>
+                                    </div>
+                                    <span>Tech Industry</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Section Manager -->
+                        <div class="section-manager">
+                            <h3><i class="fas fa-cog"></i> Manage Resume Sections</h3>
+                            <div class="section-toggles">
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="togglePhoto" onchange="toggleSection('photo')" checked>
+                                    <span>Profile Photo</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleSummary" onchange="toggleSection('summary')" checked>
+                                    <span>Professional Summary</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleEducation" onchange="toggleSection('education')" checked>
+                                    <span>Education</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleExperience" onchange="toggleSection('experience')" checked>
+                                    <span>Work Experience</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleProjects" onchange="toggleSection('projects')" checked>
+                                    <span>Projects</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleSkills" onchange="toggleSection('skills')" checked>
+                                    <span>Skills</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleCertifications" onchange="toggleSection('certifications')">
+                                    <span>Certifications</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleLanguages" onchange="toggleSection('languages')">
+                                    <span>Languages</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleVolunteer" onchange="toggleSection('volunteer')">
+                                    <span>Volunteer Experience</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleAwards" onchange="toggleSection('awards')">
+                                    <span>Awards & Honors</span>
+                                </label>
+                                <label class="section-toggle">
+                                    <input type="checkbox" id="toggleLinks" onchange="toggleSection('links')" checked>
+                                    <span>Additional Links</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Layout Options -->
+                        <div class="layout-options">
+                            <h3><i class="fas fa-th-large"></i> Layout Customization</h3>
+                            <div class="layout-controls">
+                                <div class="control-group">
+                                    <label>
+                                        <input type="checkbox" id="twoColumn" onchange="toggleTwoColumn()">
+                                        Two-Column Layout
+                                    </label>
+                                </div>
+                                <div class="control-group">
+                                    <label>
+                                        <input type="checkbox" id="skillsBars" onchange="toggleSkillsBars()">
+                                        Skills Progress Bars
+                                    </label>
+                                </div>
+                                <div class="control-group">
+                                    <label>
+                                        <input type="checkbox" id="compactMode" onchange="toggleCompactMode()">
+                                        Compact Mode
+                                    </label>
+                                </div>
+                                <div class="control-group">
+                                    <label>
+                                        <input type="checkbox" id="showIcons" onchange="toggleIcons()" checked>
+                                        Show Section Icons
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resume Form -->
+                        <form id="resumeForm" class="resume-form">
+                            <!-- Profile Photo Section -->
+                            <div class="form-group photo-section" id="photoSection">
+                                <h3><i class="fas fa-camera"></i> Profile Photo</h3>
+                                <div class="photo-upload">
+                                    <input type="file" id="profilePhoto" accept="image/*" onchange="handlePhotoUpload(event)">
+                                    <label for="profilePhoto" class="upload-label">
+                                        <i class="fas fa-upload"></i>
+                                        Click to upload photo
+                                    </label>
+                                    <div id="photoPreview" class="photo-preview"></div>
+                                </div>
+                            </div>
+
+                            <!-- Personal Info -->
+                            <div class="form-group">
+                                <h3><i class="fas fa-user"></i> Personal Information</h3>
+                                <div class="form-row">
+                                    <input type="text" id="fullName" placeholder="Full Name" required>
+                                    <input type="email" id="email" placeholder="Email" required>
+                                </div>
+                                <div class="form-row">
+                                    <input type="tel" id="phone" placeholder="Phone">
+                                    <input type="text" id="location" placeholder="Location">
+                                </div>
+                                <div class="form-row">
+                                    <input type="url" id="linkedin" placeholder="LinkedIn Profile URL">
+                                    <input type="url" id="github" placeholder="GitHub Profile URL">
+                                </div>
+                                <div class="form-row">
+                                    <input type="url" id="website" placeholder="Portfolio/Website URL">
+                                    <input type="url" id="portfolio" placeholder="Additional Portfolio URL">
+                                </div>
+                            </div>
+
+                            <!-- Summary -->
+                            <div class="form-group" id="summarySection">
+                                <h3><i class="fas fa-file-text"></i> Professional Summary</h3>
+                                <textarea id="summary" placeholder="Brief overview of your background and career goals..." rows="4"></textarea>
+                            </div>
+
+                            <!-- Education -->
+                            <div class="form-group" id="educationSection">
+                                <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                                <div id="educationList"></div>
+                                <button type="button" class="add-btn" onclick="addEducation()">+ Add Education</button>
+                            </div>
+
+                            <!-- Experience -->
+                            <div class="form-group" id="experienceSection">
+                                <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+                                <div id="experienceList"></div>
+                                <button type="button" class="add-btn" onclick="addExperience()">+ Add Experience</button>
+                            </div>
+
+                            <!-- Projects -->
+                            <div class="form-group" id="projectsSection">
+                                <h3><i class="fas fa-project-diagram"></i> Projects</h3>
+                                <div id="projectsList"></div>
+                                <button type="button" class="add-btn" onclick="addProject()">+ Add Project</button>
+                            </div>
+
+                            <!-- Skills -->
+                            <div class="form-group" id="skillsSection">
+                                <h3><i class="fas fa-cogs"></i> Skills & Expertise</h3>
+                                <input type="text" id="technicalSkills" placeholder="Technical Skills (e.g., JavaScript, Python, Design...)">
+                                <input type="text" id="softwareSkills" placeholder="Software & Tools (e.g., Adobe Creative Suite, Git, VS Code...)">
+                                <input type="text" id="softSkills" placeholder="Soft Skills (e.g., Communication, Leadership, Problem-solving...)">
+                            </div>
+
+                            <!-- Certifications -->
+                            <div class="form-group" id="certificationsSection" style="display: none;">
+                                <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                                <div id="certificationsList"></div>
+                                <button type="button" class="add-btn" onclick="addCertification()">+ Add Certification</button>
+                            </div>
+
+                            <!-- Languages -->
+                            <div class="form-group" id="languagesSection" style="display: none;">
+                                <h3><i class="fas fa-language"></i> Languages</h3>
+                                <div id="languagesList"></div>
+                                <button type="button" class="add-btn" onclick="addLanguage()">+ Add Language</button>
+                            </div>
+
+                            <!-- Volunteer Experience -->
+                            <div class="form-group" id="volunteerSection" style="display: none;">
+                                <h3><i class="fas fa-hands-helping"></i> Volunteer Experience</h3>
+                                <div id="volunteerList"></div>
+                                <button type="button" class="add-btn" onclick="addVolunteer()">+ Add Volunteer Experience</button>
+                            </div>
+
+                            <!-- Awards -->
+                            <div class="form-group" id="awardsSection" style="display: none;">
+                                <h3><i class="fas fa-trophy"></i> Awards & Honors</h3>
+                                <div id="awardsList"></div>
+                                <button type="button" class="add-btn" onclick="addAward()">+ Add Award</button>
+                            </div>
+
+                            <!-- Additional Links -->
+                            <div class="form-group" id="linksSection">
+                                <h3><i class="fas fa-link"></i> Additional Links</h3>
+                                <div id="linksList"></div>
+                                <button type="button" class="add-btn" onclick="addCustomLink()">+ Add Custom Link</button>
+                            </div>
+                        </form>
+
+                        <!-- Export Buttons -->
+                        <div class="export-section">
+                            <h3><i class="fas fa-download"></i> Export Resume</h3>
+                            <div class="export-buttons">
+                                <button class="export-btn pdf" onclick="exportPDF()">
+                                    <i class="fas fa-file-pdf"></i> Export PDF
+                                </button>
+                                <button class="export-btn latex" onclick="exportLaTeX()">
+                                    <i class="fas fa-file-code"></i> Export LaTeX
+                                </button>
+                                <button class="export-btn html" onclick="exportHTML()">
+                                    <i class="fas fa-file-code"></i> Export HTML
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="preview-section">
+                        <div class="preview-header">
+                            <h3>Live Preview</h3>
+                            <div class="preview-controls">
+                                <button class="zoom-btn" onclick="adjustZoom(-0.1)"><i class="fas fa-search-minus"></i></button>
+                                <span id="zoomLevel">100%</span>
+                                <button class="zoom-btn" onclick="adjustZoom(0.1)"><i class="fas fa-search-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="preview-container" id="previewContainer">
+                            <div id="resumePreview" class="resume-preview modern-theme modern-layout">
+                                <!-- Resume content will be dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
