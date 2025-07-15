@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dorney Park Ride Lookup</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000, #0f0f0f);
+      font-family: 'Orbitron', sans-serif;
+      color: #00ffea;
+      margin: 0;
+      padding: 0;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      box-shadow: 0 0 20px #00ffea;
+      border-bottom: 2px solid #00ffea;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #00ffea;
+      letter-spacing: 2px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #111;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffea;
+    }
+
+    label {
+      font-size: 1.2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: #00ffea;
+      outline: none;
+      box-shadow: inset 0 0 5px #00ffea;
+    }
+
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      background: #00ffea;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #00c4ba;
+    }
+
+    .result {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #222;
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px #00ffea;
+      font-size: 1.2rem;
+      min-height: 2rem;
+    }
+
+    .not-found {
+      color: #ff0044;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #333;
+      font-size: 0.9rem;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dorney Park Ride Lookup</h1>
+  </header>
+  <div class="container">
+    <label for="rideInput">Enter Ride Name:</label>
+    <input type="text" id="rideInput" placeholder="e.g. Steel Force" />
+    <button onclick="lookupRide()">Find Extension & Supervisor</button>
+    <div class="result" id="result"></div>
+  </div>
+  <footer>
+    Made by Tom Askharoun
+  </footer>
+
+  <script>
+    const rideData = {
+      "Iron menace": { extension: "5620", supervisor: "Rides 10" },
+      "MT Buckets": { extension: "3327", supervisor: "Rides 10" },
+      "Steel Force": { extension: "3341", supervisor: "Rides 10" },
+      "Revolution": { extension: "3363", supervisor: "Rides 10" },
+      "Road Rally": { extension: "3340", supervisor: "Rides 10" },
+      "Possessed": { extension: "3316", supervisor: "Rides 10" },
+      "Whip": { extension: "3329", supervisor: "Rides 10" },
+      "Zephyr": { extension: "3319", supervisor: "Rides 10" },
+
+      "Ferris Wheel": { extension: "3335", supervisor: "Rides 20" },
+      "Demon Drop": { extension: "3320", supervisor: "Rides 20" },
+      "Dominator": { extension: "3350", supervisor: "Rides 20" },
+      "Enterprise": { extension: "3331", supervisor: "Rides 20" },
+      "Musik Express": { extension: "3332", supervisor: "Rides 20" },
+      "Scrambler": { extension: "3323", supervisor: "Rides 20" },
+      "Thunderhawk": { extension: "3310", supervisor: "Rides 20" },
+      "Red Dragon": { extension: "3322", supervisor: "Rides 20" },
+      "Tilt-A-Whirl": { extension: "3326", supervisor: "Rides 20" },
+      "Thunder Creek Mnt.": { extension: "3325", supervisor: "Rides 20" },
+
+      "Camp Bus": { extension: "3357", supervisor: "Rides 30" },
+      "Charlie B. Wind Up": { extension: "3353", supervisor: "Rides 30" },
+      "Flying Ace": { extension: "3354", supervisor: "Rides 30" },
+      "Flying Ace Balloon": { extension: "3369", supervisor: "Rides 30" },
+      "Hydra": { extension: "3334", supervisor: "Rides 30" },
+      "Kite Eating Tree": { extension: "3358", supervisor: "Rides 30" },
+      "Linus Launcher": { extension: "3365", supervisor: "Rides 30" },
+      "Peanuts 500": { extension: "3367", supervisor: "Rides 30" },
+      "Peanuts Road-Rally": { extension: "3355", supervisor: "Rides 30" },
+      "Sally Swing Set": { extension: "3366", supervisor: "Rides 30" },
+      "SnoopyRocket Exp.": { extension: "3375", supervisor: "Rides 30" },
+      "WWL": { extension: "3347", supervisor: "Rides 30" },
+      "WoodStock Exp.": { extension: "3352", supervisor: "Rides 30" },
+      "Wagon Wheel": { extension: "3356", supervisor: "Rides 30" },
+      "WhirlyBirds": { extension: "3364", supervisor: "Rides 30" },
+      "Snoopy Cloud Climbers": { extension: "3359", supervisor: "Rides 30" },
+      "Snoopy Junction": { extension: "3368", supervisor: "Rides 30" },
+
+      "Antique Carousel": { extension: "3343", supervisor: "Rides 40" },
+      "Cedar Creek Cannonball": { extension: "3344", supervisor: "Rides 40" },
+      "Dodgem": { extension: "5617", supervisor: "Rides 40" },
+      "Kaleidoscope": { extension: "5618", supervisor: "Rides 40" },
+      "Talon": { extension: "3360", supervisor: "Rides 40" },
+      "Thunder Canyon": { extension: "5691", supervisor: "Rides 40" },
+      "Wave Swinger": { extension: "3333", supervisor: "Rides 40" },
+      "Wild Mouse": { extension: "3349", supervisor: "Rides 40" }
+    };
+
+    function lookupRide() {
+      const input = document.getElementById('rideInput').value.trim().toLowerCase();
+      let found = null;
+
+      for (const [name, data] of Object.entries(rideData)) {
+        if (name.toLowerCase() === input) {
+          found = data;
+          break;
+        }
+      }
+
+      const resultDiv = document.getElementById('result');
+      if (found) {
+        resultDiv.innerHTML = `
+          <strong>Ride:</strong> ${capitalize(input)}<br>
+          <strong>Extension:</strong> ${found.extension}<br>
+          <strong>Supervisor:</strong> ${found.supervisor}
+        `;
+      } else {
+        resultDiv.innerHTML = `<span class="not-found">Ride not found. Please check the name and try again.</span>`;
+      }
+    }
+
+    function capitalize(str) {
+      return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+  </script>
+</body>
+</html>
