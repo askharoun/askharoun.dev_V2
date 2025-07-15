@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Dorney Park Ride Lookup</title>
+<title>Dorney Park Floating Lookup</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
-  
+
   body {
     margin: 0;
     background-color: #121212;
@@ -26,36 +26,55 @@
     font-size: 2rem;
   }
 
-  .container {
-    max-width: 600px;
-    margin: 2rem auto;
+  .floating-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 280px;
     background-color: #1c1c1c;
-    padding: 2rem;
+    border: 2px solid #333;
     border-radius: 8px;
-    box-shadow: 0 0 10px #000;
+    box-shadow: 0 0 20px #000;
+    z-index: 9999;
+    user-select: none;
+    overflow: hidden;
+  }
+
+  .widget-header {
+    background-color: #000;
+    padding: 0.5rem;
+    cursor: move;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    color: #ffd500;
+    font-weight: bold;
+  }
+
+  .widget-body {
+    padding: 1rem;
   }
 
   label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+    font-size: 0.9rem;
     color: #ffd500;
+    display: block;
+    margin-bottom: 0.3rem;
   }
 
   .autocomplete {
     position: relative;
-    width: 100%;
   }
 
   input[type="text"] {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.5rem;
     border: 1px solid #333;
     border-radius: 4px;
     background-color: #222;
     color: #ffd500;
-    font-size: 1rem;
+    font-size: 0.9rem;
     box-sizing: border-box;
+    outline: none;
   }
 
   .suggestions {
@@ -65,27 +84,30 @@
     right: 0;
     background-color: #222;
     border: 1px solid #333;
-    max-height: 200px;
+    max-height: 150px;
     overflow-y: auto;
     z-index: 10;
   }
 
-  .suggestions div {
-    padding: 0.5rem;
+  .suggestion-item {
+    padding: 0.4rem;
     cursor: pointer;
+    transition: background 0.2s;
   }
 
-  .suggestions div:hover {
+  .suggestion-item:hover,
+  .suggestion-active {
     background-color: #333;
+    color: #ffd500;
   }
 
   button {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.5rem;
     background-color: #ffd500;
     color: #000;
-    font-size: 1rem;
+    font-size: 0.9rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -97,25 +119,18 @@
   }
 
   .result {
-    margin-top: 2rem;
-    padding: 1rem;
+    margin-top: 0.8rem;
+    padding: 0.5rem;
     background-color: #222;
     border-radius: 4px;
     border: 1px solid #333;
     min-height: 2rem;
     color: #ffd500;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 
   .not-found {
     color: #ff4d4d;
-  }
-
-  footer {
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #444;
   }
 </style>
 </head>
@@ -123,18 +138,24 @@
 <header>
   <h1>Dorney Park</h1>
 </header>
-<div class="container">
-  <label for="rideInput">Ride Lookup:</label>
-  <div class="autocomplete">
-    <input type="text" id="rideInput" placeholder="Type ride name...">
-    <div id="suggestions" class="suggestions"></div>
+
+<div class="floating-widget" id="widget">
+  <div class="widget-header" id="widgetHeader">Ride Lookup</div>
+  <div class="widget-body">
+    <label for="rideInput">Ride Name:</label>
+    <div class="autocomplete">
+      <input type="text" id="rideInput" placeholder="Type ride..." autocomplete="off">
+      <div id="suggestions" class="suggestions"></div>
+    </div>
+    <button onclick="lookupRide()">Search</button>
+    <div id="result" class="result"></div>
   </div>
-  <button onclick="lookupRide()">Find Extension & Supervisor</button>
-  <div id="result" class="result"></div>
 </div>
+
 <footer>
-  Made by Tom Askharoun
+  <p style="text-align:center; color:#444; font-size:0.9rem;">Made by Tom Askharoun</p>
 </footer>
+
 <script>
 const rideData = {
   "Iron menace": { extension: "5620", supervisor: "Rides 10" },
@@ -183,39 +204,78 @@ const rideData = {
 };
 
 const rideNames = Object.keys(rideData);
+let activeSuggestionIndex = -1;
+const inputEl = document.getElementById('rideInput');
+const suggestionsDiv = document.getElementById('suggestions');
 
-document.getElementById('rideInput').addEventListener('input', showSuggestions);
+inputEl.addEventListener('input', showSuggestions);
+inputEl.addEventListener('keydown', handleKeyDown);
 
 function showSuggestions() {
-  const input = document.getElementById('rideInput').value.toLowerCase();
-  const suggestionsDiv = document.getElementById('suggestions');
+  const input = inputEl.value.toLowerCase();
   suggestionsDiv.innerHTML = '';
-
+  activeSuggestionIndex = -1;
   if (!input) return;
 
   const matches = rideNames.filter(name => name.toLowerCase().includes(input));
   matches.forEach(name => {
     const div = document.createElement('div');
     div.textContent = name;
+    div.classList.add('suggestion-item');
     div.onclick = () => {
-      document.getElementById('rideInput').value = name;
+      inputEl.value = name;
       suggestionsDiv.innerHTML = '';
+      lookupRide();
     };
     suggestionsDiv.appendChild(div);
   });
 }
 
-function lookupRide() {
-  const input = document.getElementById('rideInput').value.trim().toLowerCase();
-  let found = null;
+function handleKeyDown(e) {
+  const items = suggestionsDiv.getElementsByClassName('suggestion-item');
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (activeSuggestionIndex < items.length - 1) {
+      activeSuggestionIndex++;
+      updateActive(items);
+    }
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (activeSuggestionIndex > 0) {
+      activeSuggestionIndex--;
+      updateActive(items);
+    }
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (activeSuggestionIndex >= 0 && items.length > 0) {
+      inputEl.value = items[activeSuggestionIndex].textContent;
+      suggestionsDiv.innerHTML = '';
+      lookupRide();
+    } else {
+      lookupRide();
+    }
+  }
+}
 
+function updateActive(items) {
+  for (let i = 0; i < items.length; i++) {
+    items[i].classList.remove('suggestion-active');
+  }
+  if (activeSuggestionIndex >= 0 && activeSuggestionIndex < items.length) {
+    items[activeSuggestionIndex].classList.add('suggestion-active');
+    items[activeSuggestionIndex].scrollIntoView({ block: 'nearest' });
+  }
+}
+
+function lookupRide() {
+  const input = inputEl.value.trim().toLowerCase();
+  let found = null;
   for (const [name, data] of Object.entries(rideData)) {
     if (name.toLowerCase() === input) {
       found = data;
       break;
     }
   }
-
   const resultDiv = document.getElementById('result');
   if (found) {
     resultDiv.innerHTML = `
@@ -224,12 +284,40 @@ function lookupRide() {
       <strong>Supervisor:</strong> ${found.supervisor}
     `;
   } else {
-    resultDiv.innerHTML = `<span class="not-found">Ride not found. Please check the name or pick from suggestions.</span>`;
+    resultDiv.innerHTML = `<span class="not-found">Ride not found. Check name or pick from suggestions.</span>`;
   }
 }
 
 function capitalize(str) {
   return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
+// DRAGGING LOGIC
+const widget = document.getElementById('widget');
+const header = document.getElementById('widgetHeader');
+let offsetX = 0, offsetY = 0, isDragging = false;
+
+header.addEventListener('mousedown', e => {
+  isDragging = true;
+  offsetX = e.clientX - widget.offsetLeft;
+  offsetY = e.clientY - widget.offsetTop;
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
+
+function onMouseMove(e) {
+  if (isDragging) {
+    widget.style.left = (e.clientX - offsetX) + 'px';
+    widget.style.top = (e.clientY - offsetY) + 'px';
+    widget.style.bottom = 'auto';
+    widget.style.right = 'auto';
+  }
+}
+
+function onMouseUp() {
+  isDragging = false;
+  document.removeEventListener('mousemove', onMouseMove);
+  document.removeEventListener('mouseup', onMouseUp);
 }
 </script>
 </body>
